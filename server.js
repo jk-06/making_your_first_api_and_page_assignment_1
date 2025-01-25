@@ -32,6 +32,42 @@ Example Responses:
 
 Add the required logic below to complete the API.
 */
+// Endpoint to greet the user
+app.get('/assistant/greet', (req, res) => {
+  const userName = req.query.name;
+
+  // Check if the name parameter is provided
+  if (!userName) {
+    return res.status(400).json({ error: "Name is required as a query parameter." });
+  }
+
+  // Get the current day of the week
+  const daysOfWeek = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday"
+  ];
+  const currentDay = daysOfWeek[new Date().getDay()];
+
+  // Messages based on the day
+  let dayMessage = "Have a wonderful day!";
+  if (currentDay === "Monday") {
+    dayMessage = "Happy Monday! Start your week with energy!";
+  } else if (currentDay === "Friday") {
+    dayMessage = "It's Friday! The weekend is near!";
+  }
+
+  // Respond with a JSON object
+  res.json({
+    welcomeMessage: `Hello, ${userName}! Welcome to our assistant app!`,
+    dayMessage: dayMessage
+  });
+});
+
 
 const PORT = 3000;
 app.listen(PORT, () => {

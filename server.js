@@ -61,12 +61,10 @@ app.get('/assistant/greet', (req, res) => {
     dayMessage = "It's Friday! The weekend is near!";
   }
 
-  // Respond with a JSON object
-  res.json({
-    welcomeMessage: `Hello, ${userName}! Welcome to our assistant app!`,
-    dayMessage: dayMessage
-  });
+  // Respond with just the plain text
+  res.send(`${"Hello, " + userName}! ${dayMessage}`);
 });
+
 
 
 const PORT = 3000;
